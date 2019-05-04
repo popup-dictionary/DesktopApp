@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jwnl">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../jwnl.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../jwnl14-rc2/jwnl14-rc2/doc/javadoc" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
