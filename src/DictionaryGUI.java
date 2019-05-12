@@ -154,20 +154,29 @@ public class DictionaryGUI extends javax.swing.JFrame {
        try {
            enteredWord = jTextField1.getText();
            WordSearch Word = new WordSearch();
+           jTextArea1.setOpaque(false);
+           jTextArea1.setEditable(false);
+           jTextArea1.setFocusable(true);
+
            if(jComboBox1.getSelectedIndex()==0){
                def=Word.wordSearchNoun(enteredWord);
                jTextArea1.setText(def);
+               jTextArea1.setWrapStyleWord(true);
                jTextArea1.setLineWrap(true);
            }
            else if(jComboBox1.getSelectedIndex()==1){
                def=Word.wordSearchVerb(enteredWord);
                jTextArea1.setText(def);
+               jTextArea1.setWrapStyleWord(true);
                jTextArea1.setLineWrap(true);
            }
            else{
                def=Word.wordSearchAdj(enteredWord);
                jTextArea1.setText(def);
+               jTextArea1.setWrapStyleWord(true);
                jTextArea1.setLineWrap(true);
+               jTextArea1.setWrapStyleWord(true);
+
            }
 
        }
