@@ -7,52 +7,58 @@ import net.didion.jwnl.dictionary.Dictionary;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class WordSearch {
+List<String> List=new ArrayList();
 
-        public String wordSearchNoun(String word) throws FileNotFoundException{
+    public java.util.List<String> wordSearchNoun(String word) throws FileNotFoundException{
         try {
             JWNL.initialize(new FileInputStream("Config/file_properties.xml"));
             Dictionary wordnet = Dictionary.getInstance();
             IndexWord noun = wordnet.getIndexWord(POS.NOUN, word);
             Synset[] nounsenses = noun.getSenses();
             for (Synset nounsense : nounsenses) {
-                return nounsense.getGloss();
+               List.add(nounsense.getGloss());
+                // return nounsense.getGloss();
             }
-
+            return List;
         } catch (JWNLException ex) {
             throw new FileNotFoundException();
         }
-        return "";
     }
 
-    public String wordSearchVerb(String word) throws FileNotFoundException{
+    public java.util.List<String> wordSearchVerb(String word) throws FileNotFoundException{
         try {
             JWNL.initialize(new FileInputStream("Config/file_properties.xml"));
             Dictionary wordnet = Dictionary.getInstance();
             IndexWord verb = wordnet.getIndexWord(POS.VERB, word);
             Synset[] verbsenses = verb.getSenses();
             for (Synset verbsense : verbsenses) {
-                return verbsense.getGloss();
+                List.add(verbsense.getGloss());
+
             }
+            return List;
         } catch (JWNLException ex) {
             throw new FileNotFoundException();
         }
-        return "";
     }
-    public String wordSearchAdj(String word) throws FileNotFoundException{
+
+    public java.util.List<String> wordSearchAdj(String word) throws FileNotFoundException{
         try {
             JWNL.initialize(new FileInputStream("Config/file_properties.xml"));
             Dictionary wordnet = Dictionary.getInstance();
             IndexWord Adj = wordnet.getIndexWord(POS.ADJECTIVE, word);
             Synset[] Adjsenses = Adj.getSenses();
             for (Synset Adjsense : Adjsenses) {
-                return Adjsense.getGloss();
+                List.add(Adjsense.getGloss());
             }
+            return List;
         } catch (JWNLException ex) {
             throw new FileNotFoundException();
         }
-        return "";
     }
 //    public static void main(String[] args) throws FileNotFoundException {
 //        try {

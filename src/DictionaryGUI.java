@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +19,8 @@ public class DictionaryGUI extends javax.swing.JFrame {
 
     public String enteredWord;
     public String def;
+    int i=0;
+    List<String> List=new ArrayList();
     /**
      * Creates new form DictionaryGUI
      */
@@ -38,6 +42,8 @@ public class DictionaryGUI extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jButtonNext= new javax.swing.JButton();
+        jButtonPrev= new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +97,32 @@ public class DictionaryGUI extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
 
+        jButtonPrev.setText("Previous");
+        jButtonPrev.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                jTextArea1.setText(List.get(i--));
+                jTextArea1.setWrapStyleWord(true);
+                jTextArea1.setLineWrap(true);
+            }
+
+            public void actionPerformed(java.awt.event.ActionListener evt){
+                jButtonPrevActionPerformed(evt);
+            }
+        });
+        jButtonNext.setText("Next");
+        jButtonNext.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                jTextArea1.setText(List.get(i++));
+                jTextArea1.setWrapStyleWord(true);
+                jTextArea1.setLineWrap(true);
+            }
+            public void actionPerformed(java.awt.event.ActionListener evt){
+                JButtonNextActionPerformed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel2.setText("Meaning");
@@ -117,6 +149,8 @@ public class DictionaryGUI extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPane1)
+                                        .addComponent(jButtonPrev)
+                                        .addComponent(jButtonNext)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -139,17 +173,33 @@ public class DictionaryGUI extends javax.swing.JFrame {
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jButtonPrev)
+                                                .addComponent(jButtonNext)
                                                 .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>
 
+    private void jButtonPrevActionPerformed(ActionListener evt) {
+        jTextArea1.setText(List.get(i--));
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setLineWrap(true);
+
+    }
+
+    private void JButtonNextActionPerformed(ActionListener evt) {
+        jTextArea1.setText(List.get(i++));
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setLineWrap(true);
+    }
+
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton1ActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
        try {
            enteredWord = jTextField1.getText();
@@ -158,24 +208,25 @@ public class DictionaryGUI extends javax.swing.JFrame {
            jTextArea1.setEditable(false);
            jTextArea1.setFocusable(true);
 
-           if(jComboBox1.getSelectedIndex()==0){
-               def=Word.wordSearchNoun(enteredWord);
-               jTextArea1.setText(def);
+           if(jComboBox1.getSelectedIndex()==0)
+           {
+               List=Word.wordSearchNoun(enteredWord);
+               jTextArea1.setText(List.get(1));
                jTextArea1.setWrapStyleWord(true);
                jTextArea1.setLineWrap(true);
            }
+
            else if(jComboBox1.getSelectedIndex()==1){
-               def=Word.wordSearchVerb(enteredWord);
-               jTextArea1.setText(def);
+               List=Word.wordSearchVerb(enteredWord);
+               jTextArea1.setText(List.get(1));
                jTextArea1.setWrapStyleWord(true);
                jTextArea1.setLineWrap(true);
            }
            else{
-               def=Word.wordSearchAdj(enteredWord);
-               jTextArea1.setText(def);
+               List=Word.wordSearchAdj(enteredWord);
+               jTextArea1.setText(List.get(1));
                jTextArea1.setWrapStyleWord(true);
                jTextArea1.setLineWrap(true);
-               jTextArea1.setWrapStyleWord(true);
 
            }
 
@@ -184,6 +235,14 @@ public class DictionaryGUI extends javax.swing.JFrame {
        }
     }
 
+//    private void jButtonPrevActionPerformed(ActionListener evt)
+//    {
+//
+//            jTextArea1.setText(List.get(i--));
+//            jTextArea1.setWrapStyleWord(true);
+//            jTextArea1.setLineWrap(true);
+//
+//    }
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -235,6 +294,8 @@ public class DictionaryGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jButtonNext;
+    private javax.swing.JButton jButtonPrev;
 
     // End of variables declaration
 }
