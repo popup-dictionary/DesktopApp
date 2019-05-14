@@ -16,7 +16,7 @@ List<String> List=new ArrayList();
 
     public java.util.List<String> wordSearchNoun(String word) throws FileNotFoundException{
         try {
-            JWNL.initialize(new FileInputStream("Config/file_properties.xml"));
+            JWNL.initialize(new FileInputStream("lib/file_properties.xml"));
             Dictionary wordnet = Dictionary.getInstance();
             IndexWord noun = wordnet.getIndexWord(POS.NOUN, word);
             Synset[] nounsenses = noun.getSenses();
@@ -32,7 +32,7 @@ List<String> List=new ArrayList();
 
     public java.util.List<String> wordSearchVerb(String word) throws FileNotFoundException{
         try {
-            JWNL.initialize(new FileInputStream("Config/file_properties.xml"));
+            JWNL.initialize(new FileInputStream("lib/file_properties.xml"));
             Dictionary wordnet = Dictionary.getInstance();
             IndexWord verb = wordnet.getIndexWord(POS.VERB, word);
             Synset[] verbsenses = verb.getSenses();
@@ -48,7 +48,7 @@ List<String> List=new ArrayList();
 
     public java.util.List<String> wordSearchAdj(String word) throws FileNotFoundException{
         try {
-            JWNL.initialize(new FileInputStream("Config/file_properties.xml"));
+            JWNL.initialize(new FileInputStream("lib/file_properties.xml"));
             Dictionary wordnet = Dictionary.getInstance();
             IndexWord Adj = wordnet.getIndexWord(POS.ADJECTIVE, word);
             Synset[] Adjsenses = Adj.getSenses();
