@@ -182,18 +182,25 @@ public class DictionaryGUI extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButtonPrevActionPerformed(ActionListener evt) {
-        jTextArea1.setText(List.get(i--));
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setLineWrap(true);
+        if (i < 0) {
+            jTextArea1.setText(List.get(i--));
+            jTextArea1.setWrapStyleWord(true);
+            jTextArea1.setLineWrap(true);
 
+        }
+        else
+            jTextArea1.setText("out of Range");
     }
 
     private void JButtonNextActionPerformed(ActionListener evt) {
-        jTextArea1.setText(List.get(i++));
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setLineWrap(true);
+        if (i < List.size()) {
+            jTextArea1.setText(List.get(i++));
+            jTextArea1.setWrapStyleWord(true);
+            jTextArea1.setLineWrap(true);
+        }
+        else
+            jTextArea1.setText("out of Range");
     }
-
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -229,6 +236,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
                jTextArea1.setLineWrap(true);
 
            }
+
 
        }
        catch(FileNotFoundException ex){
